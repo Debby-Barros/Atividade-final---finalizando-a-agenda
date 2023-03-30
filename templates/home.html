@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MPS Flask REST API</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+        <div class="content first-content">
+            <div class="first-column">
+                <h2 class="title">Easy schedule!</h2>
+            </div> 
+            
+            <div class="second-column">
+                {% for user in user %}
+                <h3>Id do usuário: {{user["usuario_id"]}}</h3>
+                <h3>Nome do usuário: {{user["usuario_nome"]}}</h3>
+                <br>
+                <ul>
+                    <h3>Eventos de {{user["usuario_nome"]}}:</h3>
+                    {% for event in event %}
+                        {% if event["user_id"] == user["user_id"] %}
+                            <li><strong class="marcatexto"> nome do evento: </strong> {{event["evento_nome"]}}</li>
+                            <li><strong class="marcatexto"> descrição: </strong> {{event["evento_descricao"]}}</li>
+                            <li><strong class="marcatexto"> data :</strong> {{event["evento_data_hora"]}}</li>
+                            <li><strong class="marcatexto"> status :</strong> {{event["evento_status"]}}</li><br>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <div id="linha-horizontal"></div>
+                {% endfor %}
+            </div>
+        </div> 
+</body>
+</html>
